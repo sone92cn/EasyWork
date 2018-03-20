@@ -1,0 +1,36 @@
+﻿-------------------------------文件菜单配置文件----------------------------------
+[DIRS]
+收入核算=E:\Zhubajie\05.收入核算
+电子书=E:\Felix\Books
+小工具=E:\Projects\Script;D:\Access\Script
+常用网站=E:\Felix\URLS
+PyProjects=E:\Projects\Python,2
+[EXTS]
+EXT=cmd
+EXT=py|pyw
+EXT=,url|lnk
+EXT=doc|docx|pdf
+EXT=xls|xlsx|xlsm|accdb
+[CMD1]
+猪八戒=E:\Zhubajie
+收入核算=E:\Zhubajie\05.收入核算
+[CMD2]
+计算器=E:\Projects\Script\Python\Calculator\Calculator.pyw
+数据搜索=E:\Projects\Python\XlsxSearcher\XlsxSearcher.pyw
+数据更新=E:\Projects\Python\XlsxUpdater\XlsxUpdater.pyw
+数据分类=E:\Projects\Python\XlsxSplitter\XlsxSplitter.pyw
+数据比对=E:\Projects\Python\XlsxComparer\XlsxComparer.pyw
+[ENDS]
+-----------------------------------设置说明--------------------------------------
+
+找车宝 E:\Chefuwang\找车宝\找车宝
+贵兴佳 E:\Chefuwang\贵兴佳
+
+以“-”开始的行是注释行，不生效
+[DIRS] 设置主目录，每行一个，可多个；每行可指定多个目录，英文分号分隔;目录后紧跟逗号及数字指定最大搜索级次,不填写搜索只最后一级
+[EXTS] 需要监视的扩展名，每行可写多个后缀，用“|”分隔，可写多行；逗号开头表示创建菜单时隐藏后缀名
+[CMD1] 自定义头部菜单，每行一个，可多个
+[CMD2] 自定义尾部菜单，每行一个，可多个
+[ENDS] 配置结束，此行后的数据无效
+如需修改托盘区图标，下载图标文件替换文件目录下的“EasyWork.ico”重新运行程序即可
+修改的设置需单击刷新才能生效
