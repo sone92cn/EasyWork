@@ -2,8 +2,8 @@
 [DIRS]
 收入核算=E:\Zhubajie\05.收入核算
 电子书=E:\Felix\Books
-小工具=E:\Projects\Script;D:\Access\Script
-常用网站=E:\Felix\URLS
+小工具=Tools
+常用网站=URLS
 PyProjects=E:\Projects\Python,2
 [EXTS]
 EXT=cmd
