@@ -19,7 +19,7 @@ class staticMethod():
             if win32gui.FindWindow(wndclassname, wndtitlename):
                 win32api.MessageBox(win32con.NULL, '程序已运行！', '错误', win32con.MB_OK)
                 sys.exit()
-            os.chdir(sys.path[0])
+            os.chdir(os.path.split(os.path.realpath(__file__))[0])
             WindowApplication(wndclassname, wndtitlename).startHandleMessages()
     @staticmethod
     def copyFile(fpath, tpath, move=False):

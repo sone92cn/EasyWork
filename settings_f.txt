@@ -15,16 +15,13 @@ EXT=xls|xlsx|xlsm|accdb
 猪八戒=E:\Zhubajie
 收入核算=E:\Zhubajie\05.收入核算
 [CMD2]
-计算器=E:\Projects\Script\Python\Calculator\Calculator.pyw
-数据搜索=E:\Projects\Python\XlsxSearcher\XlsxSearcher.pyw
-数据更新=E:\Projects\Python\XlsxUpdater\XlsxUpdater.pyw
-数据分类=E:\Projects\Python\XlsxSplitter\XlsxSplitter.pyw
-数据比对=E:\Projects\Python\XlsxComparer\XlsxComparer.pyw
+计算器=Tools\Calculator.pyw
+数据搜索=Tools\XlsxSearcher.pyw
+数据更新=Tools\XlsxUpdater.pyw
+数据分类=Tools\XlsxSplitter.pyw
+数据比对=Tools\XlsxComparer.pyw
 [ENDS]
 -----------------------------------设置说明--------------------------------------
-
-找车宝 E:\Chefuwang\找车宝\找车宝
-贵兴佳 E:\Chefuwang\贵兴佳
 
 以“-”开始的行是注释行，不生效
 [DIRS] 设置主目录，每行一个，可多个；每行可指定多个目录，英文分号分隔;目录后紧跟逗号及数字指定最大搜索级次,不填写搜索只最后一级
