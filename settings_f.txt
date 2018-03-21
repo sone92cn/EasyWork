@@ -1,10 +1,5 @@
 ﻿-------------------------------文件菜单配置文件----------------------------------
 [DIRS]
-收入核算=E:\Zhubajie\05.收入核算
-电子书=E:\Felix\Books
-小工具=Tools
-常用网站=URLS
-PyProjects=E:\Projects\Python,2
 [EXTS]
 EXT=cmd
 EXT=py|pyw
@@ -12,8 +7,6 @@ EXT=,url|lnk
 EXT=doc|docx|pdf
 EXT=xls|xlsx|xlsm|accdb
 [CMD1]
-猪八戒=E:\Zhubajie
-收入核算=E:\Zhubajie\05.收入核算
 [CMD2]
 计算器=Tools\Calculator.pyw
 数据搜索=Tools\XlsxSearcher.pyw

@@ -1,9 +1,5 @@
 ﻿-------------------------------文件夹菜单配置文件----------------------------------
 [DIRS]
-猪八戒=E:\Zhubajie, 2
-应用程序=D:\Apps,1;D:\Apps_x86,1
-开发工具=D:\Tools,1
-PyProjects=E:\Projects\Python,1
 [SAVS]
 [CMD1]
 [CMD2]
