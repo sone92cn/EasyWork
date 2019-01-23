@@ -12,7 +12,7 @@ def getNumString(num, length):
         s = ("0" * k) + s
     return s
 
-def renameFiles(infiles, rtype, vlen, ent1, ent2, ent3, rev):
+def renameFiles(infiles, rtype, vlen, ent1, ent2, ent3, rev, rdel, dlen, rcut, clen):
     if len(ent2.get()):
         reverse = rev.get()
         if reverse:
@@ -49,27 +49,27 @@ def renameFiles(infiles, rtype, vlen, ent1, ent2, ent3, rev):
                 continue
             os.rename(file, outfile)
 
-def getFilesToRename(rbx, cbx, com1, ent1, ent2, ent3, rev):
+def getFilesToRename(rbx, cbx, com1, ent1, ent2, ent3, rev, cbx3, com3, cbx4, com4):
     global predir
     infiles = filedialog.askopenfilenames(title="请选择需要重命名的文件：", initialdir = predir, filetypes=(("Image Files", "*.jpg;*.jpeg;*.png"), ("Excel Files", "*.xls;*.xlsx;*.xlsm"), ("Document Files", "*.doc;*.docx"), ("ALL Files", "*.*")))
     if len(infiles):
         if cbx.get():
-            renameFiles(sorted(infiles), rbx.get(), int(com1.get()), ent1, ent2, ent3, rev)
+            renameFiles(sorted(infiles), rbx.get(), int(com1.get()), ent1, ent2, ent3, rev, rbx3.get(), int(com3.get()), rbx4.get(), int(com4.get()))
         else:
-            renameFiles(sorted(infiles), rbx.get(), 0, ent1, ent2, ent3, rev)
+            renameFiles(sorted(infiles), rbx.get(), 0, ent1, ent2, ent3, rev, rbx3.get(), int(com3.get()), rbx4.get(), int(com4.get()))
         predir = os.path.split(infiles[0])[0]
         messagebox.showinfo("提示", "操作已完成")
 
-def getFolderToRename(rbx, cbx, com1, ent1, ent2, ent3, rev):
+def getFolderToRename(rbx, cbx, com1, ent1, ent2, ent3, rev, cbx3, com3, cbx4, com4):
     global predir
     indir = filedialog.askdirectory(title="请选择需要重命名的文件所在的目录：", initialdir = predir)
     if len(indir):
         infiles = createTreeAsPath(indir, fileRegular = r".*\.(jpg|jpeg|png|xls|xlsx|xlsm|doc|docx|pdf)$", scanSubFolder = False, treeMode = False)
         if len(infiles):
             if cbx.get():
-                renameFiles(sorted(infiles), rbx.get(), int(com1.get()), ent1, ent2, ent3, rev)
+                renameFiles(sorted(infiles), rbx.get(), int(com1.get()), ent1, ent2, ent3, rev, rbx3.get(), int(com3.get()), rbx4.get(), int(com4.get()))
             else:
-                renameFiles(sorted(infiles), rbx.get(), 0, ent1, ent2, ent3, rev)
+                renameFiles(sorted(infiles), rbx.get(), 0, ent1, ent2, ent3, rev, rbx3.get(), int(com3.get()), rbx4.get(), int(com4.get()))
         predir = indir
         messagebox.showinfo("提示", "操作已完成")
    
@@ -101,19 +101,30 @@ def main():
     rbx1 = ttk.Radiobutton(mainframe, variable=rbx, text='重新命名', value = 1)
     rbx2 = ttk.Radiobutton(mainframe, variable=rbx, text='添加到原文件名前', value = 2)
     rbx3 = ttk.Radiobutton(mainframe, variable=rbx, text='追加到原文件名后', value = 3)
+    rbx4 = ttk.Radiobutton(mainframe, variable=rbx, text='原文件名删除：', value = 4)
+    rbx5 = ttk.Radiobutton(mainframe, variable=rbx, text='原文件名保留：', value = 5)
     
-    cbx = IntVar(value=1)
+    cbv1 = IntVar(value=1)
     com1 = ttk.Combobox(mainframe, values = ["2", "3", "4", "5", "6", "7", "8"], width=2, state='readonly')
-    cbx1 = ttk.Checkbutton(mainframe, text = "固定编号长度到：", variable = cbx, onvalue = 1, offvalue = 0)
+    cbx1 = ttk.Checkbutton(mainframe, text = "固定编号长度到：", variable = cbv1, onvalue = 1, offvalue = 0)
     labx = ttk.Label(mainframe, text="位")
-    
+
     rev = IntVar(value=0)
     com2 = ttk.Checkbutton(mainframe, text = "使用倒序方式编号", variable = rev, onvalue = 1, offvalue = 0)
+
+    cbv3 = IntVar(value=0)
+    choi = "-5,-4,-3,-2,-1,1,2,3,4,5"
+    com3 = ttk.Combobox(mainframe, values = choi.split(","), width=2, state='normal')
+    laby = ttk.Label(mainframe, text="位")
+
+    cbv4 = IntVar(value=0)
+    com4 = ttk.Combobox(mainframe, values = choi.split(","), width=2, state='normal')
+    labz = ttk.Label(mainframe, text="位")
     
     button1= ttk.Button(mainframe, text="选择文件")
     button2= ttk.Button(mainframe, text="选择目录")
-    button1.bind('<1>',lambda e: getFilesToRename(rbx, cbx, com1, ent1, ent2, ent3, rev))
-    button2.bind('<1>',lambda e: getFolderToRename(rbx, cbx, com1, ent1, ent2, ent3, rev))
+    button1.bind('<1>',lambda e: getFilesToRename(rbx, cbv1, com1, ent1, ent2, ent3, rev, cbv3, com3, cbv4, com4))
+    button2.bind('<1>',lambda e: getFolderToRename(rbx, cbv1, com1, ent1, ent2, ent3, rev, cbv3, com3, cbv4, com4))
     
     lab1.grid(row=0, column=0, sticky=(N, E, S))
     labe.grid(row=0, column=4, sticky=(N, E, S))
@@ -126,15 +137,24 @@ def main():
     rbx1.grid(row=3, column=1, columnspan=3, sticky=(N, W, S))
     rbx2.grid(row=4, column=1, columnspan=3, sticky=(N, W, S))
     rbx3.grid(row=5, column=1, columnspan=3, sticky=(N, W, S))
-    cbx1.grid(row=6, column=1, sticky=(N, W, S))
-    com1.grid(row=6, column=2, sticky=(N, W, S))
-    labx.grid(row=6, column=3, sticky=(N, E, S))
-    com2.grid(row=7, column=1, sticky=(N, W, S))
+    rbx4.grid(row=6, column=1, sticky=(N, W, S))
+    com3.grid(row=6, column=2, sticky=(N, W, S))
+    laby.grid(row=6, column=3, sticky=(N, E, S))
+    rbx5.grid(row=7, column=1, sticky=(N, W, S))
+    com4.grid(row=7, column=2, sticky=(N, W, S))
+    labz.grid(row=7, column=3, sticky=(N, E, S))
+    cbx1.grid(row=8, column=1, sticky=(N, W, S))
+    com1.grid(row=8, column=2, sticky=(N, W, S))
+    labx.grid(row=8, column=3, sticky=(N, E, S))
+    com2.grid(row=9, column=1, sticky=(N, W, S))
+
     
-    button1.grid(row=8, column=1, sticky=(N, W, S)) 
-    button2.grid(row=9, column=1, sticky=(N, W, S)) 
     
-    root.geometry("280x250+500+230")
+    
+    button1.grid(row=10, column=1, sticky=(N, W, S)) 
+    button2.grid(row=11, column=1, sticky=(N, W, S)) 
+    
+    root.geometry("280x290+500+230")
     
     com1.current(0)
     root.mainloop()
